@@ -1,1 +1,7 @@
-<h1>Hello, world!</h1>
+<section>
+    <% if @can_create_entry %>
+    <h1>Can create entry</h1>
+    <% else %>
+    <h1>Cannot create entry</h1>
+    <% end%>
+</section>

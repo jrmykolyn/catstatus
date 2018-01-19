@@ -1,0 +1,7 @@
+<%= form_for( @entry ) do | f | %>
+    <% @statuses.each do | status |%>
+        <%= f.label  :status_id, status.title, { :value => status.name } %>
+        <%= f.radio_button :status_id, status.name %>
+    <% end %>
+    <%= f.submit %>
+<% end %>
