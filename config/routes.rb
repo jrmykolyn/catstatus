@@ -54,5 +54,5 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
 
-  resources :entries, { :only => [ :index ] }
+  resources :entries, { :only => [ :index, :new, :create ] }
 end
