@@ -5,3 +5,9 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+statuses = %w{sleep standby online offline}
+
+statuses.each do | s |
+    Status.create( { :name => s, :title => s.titleize } )
+end
