@@ -6,17 +6,28 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+user = User.create( { :name => "John Smith" } )
+
 statuses = %w{sleep standby online offline}
 
 statuses.each do | s |
     Status.create( { :name => s, :title => s.titleize } )
 end
 
-user = User.create( { :name => "John Smith" } )
-
 cats = %w{snowman mittens}
 
 cats.each do | c |
     cat = Cat.create( { :name => c, user_id: user.id } )
-    Entry.create( { :cat_id => cat.id, :status_id => Status.all.sample.id } )
+end
+
+5.times do | n |
+    entry = Entry.create( { :user_id => user.id } )
+
+    Cat.all.each do | cat |
+        subentry = Subentry.create( {
+            :cat_id => cat.id,
+            :entry_id => entry.id,
+            :status_id => Status.all.sample.id
+        } )
+    end
 end

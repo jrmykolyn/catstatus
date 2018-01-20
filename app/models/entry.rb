@@ -1,4 +1,4 @@
 class Entry < ActiveRecord::Base
-    belongs_to :cat
-    belongs_to :status
+    belongs_to :user
+    has_many :subentries
 end
