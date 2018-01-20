@@ -11,3 +11,12 @@ statuses = %w{sleep standby online offline}
 statuses.each do | s |
     Status.create( { :name => s, :title => s.titleize } )
 end
+
+user = User.create( { :name => "John Smith" } )
+
+cats = %w{snowman mittens}
+
+cats.each do | c |
+    cat = Cat.create( { :name => c, user_id: user.id } )
+    Entry.create( { :cat_id => cat.id, :status_id => Status.all.sample.id } )
+end
