@@ -58,4 +58,5 @@ Rails.application.routes.draw do
   root to: 'home#index'
 
   resources :entries, { :only => [ :index, :new, :create ] }
+  resources :cats, { :only => [ :index, :new, :create ] }
 end

@@ -1,0 +1,7 @@
+<%= link_to 'Add a Cat', new_cat_path %>
+
+<% if @cats && @cats.length > 0 %>
+    <% @cats.each do | cat | %>
+        <p><%= cat.name %></p>
+    <% end %>
+<% end %>

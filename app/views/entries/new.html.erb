@@ -7,7 +7,7 @@
 <% end %>
 
 <%= form_for( @entry ) do | f | %>
-    <% User.first.cats.each do | cat | %>
+    <% @user.cats.each do | cat | %>
         <%= f.fields_for( :subentries, @entry.subentries.build ) do | subentry |%>
             <%= subentry.hidden_field :cat_id, { :value => cat.id } %>
             <fieldset class="form-group">

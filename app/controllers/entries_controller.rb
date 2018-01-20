@@ -1,19 +1,21 @@
 class EntriesController < ApplicationController
+    before_action :authenticate_user!
 
     def index
-        @user = User.first # /// TEMP
+        @user = current_user
         @entries = @user.entries.order( { :created_at => :desc } )
         @statuses = Status.all
     end
 
     def new
+        @user = current_user
         @entry = Entry.new
         @statuses = Status.all
     end
 
     def create
         @entry = Entry.new( entry_params( params ) )
-        @entry.user_id = User.first.id # /// TEMP: To be replaced when User login is implemented.
+        @entry.user_id = current_user.id
         @statuses = Status.all # /// TEMP: Required due to possibility that `new` view will be rendered without passing through `#new` method.
 
         if @entry.save
