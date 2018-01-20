@@ -5,7 +5,7 @@ class EntriesController < ApplicationController
         @can_create_entry = Entry.where( 'created_at > ?', Time.now.beginning_of_day ).length == 0
 
         @user = User.first # /// TEMP
-
+        @entries = @user.entries.order( { :created_at => :desc } )
     end
 
     def new

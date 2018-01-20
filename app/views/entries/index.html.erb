@@ -9,7 +9,7 @@
 
     <%= link_to 'Add Entry', new_entry_path %>
 
-    <% @user.entries.each do | entry | %>
+    <% @entries.each do | entry | %>
         <h2><%= entry.created_at %></h2>
         <% entry.subentries.each do | subentry | %>
             <p><%= subentry.cat.name %> | <%= subentry.status.name %></p>
