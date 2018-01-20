@@ -12,7 +12,8 @@ class EntriesController < ApplicationController
 
     def create
         @entry = Entry.new( entry_params( params ) )
-        @entry.user_id = User.first.id # /// TEMP
+        @entry.user_id = User.first.id # /// TEMP: To be replaced when User login is implemented.
+        @statuses = Status.all # /// TEMP: Required due to possibility that `new` view will be rendered without passing through `#new` method.
 
         if @entry.save
             redirect_to entries_path
