@@ -1,9 +1,8 @@
 class EntriesController < ApplicationController
-    before_action :authenticate_user!
+    before_action :authenticate_user!, { :only => [ :new ] }
+    before_action :user_can_create_entry?, { :only => [ :new ] }
 
     def index
-        @user = current_user
-        @entries = @user.entries.order( { :created_at => :desc } )
         @statuses = Status.all
     end
 
@@ -22,6 +21,12 @@ class EntriesController < ApplicationController
             redirect_to entries_path
         else
             render :new
+        end
+    end
+
+    def user_can_create_entry?
+        unless current_user.can_create_entry?
+            redirect_to entries_path
         end
     end
 
