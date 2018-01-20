@@ -4,6 +4,8 @@ class EntriesController < ApplicationController
 
         @can_create_entry = Entry.where( 'created_at > ?', Time.now.beginning_of_day ).length == 0
 
+        @user = User.first # /// TEMP
+
     end
 
     def new

@@ -4,4 +4,11 @@
     <% else %>
     <h1>Cannot create entry</h1>
     <% end%>
+
+    <% @user.cats.each do | cat | %>
+        <h2><%= cat.name %></h2>
+        <% cat.entries.each do  | entry | %>
+            <p><%= entry.status.name %></p>
+        <% end %>
+    <% end %>
 </section>
