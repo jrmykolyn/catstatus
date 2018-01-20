@@ -1,14 +1,34 @@
 <section>
-    <% if @user.can_create_entry? %>
+    <div class="alert alert-success">
+        <% if @user.can_create_entry? %>
         <%= link_to 'Add Entry', new_entry_path %>
-    <% else %>
-        <h1>Looks like you've already created an entry for today. Don't forget to create a new one tomorrow!</h1>
-    <% end%>
-
+        <% else %>
+        <span>Looks like you've already created an entry for today. Don't forget to create a new one tomorrow!</span>
+        <% end%>
+    </div>
+</section>
+<section>
     <% @entries.each do | entry | %>
-        <h2><%= entry.created_at %></h2>
-        <% entry.subentries.each do | subentry | %>
-            <p><%= subentry.cat.name %> | <%= subentry.status.name %></p>
-        <% end %>
+        <div class="card">
+            <h3 class="card-header"><%= entry.created_at %></h3>
+            <% entry.subentries.each do | subentry | %>
+                <div class="card-block">
+                    <h4 class="card-title"><%= subentry.cat.name %></h4>
+                    <p class="card-text">
+                    <% @statuses.each do | status | %>
+                        <% if status.name == subentry.status.name %>
+                            <span class="badge badge-success"><%= subentry.status.name %></span>
+                        <% else %>
+                            <span class="badge badge-default"><%= status.name %></span>
+                        <% end %>
+                    <% end %>
+                    </p>
+                </div>
+            <% end %>
+        </div>
+
+
+
+
     <% end %>
 </section>

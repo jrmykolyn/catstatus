@@ -3,6 +3,7 @@ class EntriesController < ApplicationController
     def index
         @user = User.first # /// TEMP
         @entries = @user.entries.order( { :created_at => :desc } )
+        @statuses = Status.all
     end
 
     def new

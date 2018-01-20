@@ -10,6 +10,26 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_tree .
- *= require_self
  */
+
+@import 'bootstrap';
+
+$bg: #fafafa;
+$white: #fff;
+
+html,
+body {
+    background: $bg;
+}
+
+.nav {
+    background: $white;
+}
+
+main {
+    padding: 30px 0;
+}
+
+main .container {
+    background: $white;
+}

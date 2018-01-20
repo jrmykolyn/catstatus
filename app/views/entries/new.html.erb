@@ -8,16 +8,20 @@
 
 <%= form_for( @entry ) do | f | %>
     <% User.first.cats.each do | cat | %>
-        <div>
         <%= f.fields_for( :subentries, @entry.subentries.build ) do | subentry |%>
             <%= subentry.hidden_field :cat_id, { :value => cat.id } %>
-            <h2><%= cat.name.titleize %></h2>
-            <% @statuses.each do | status | %>
-                <%= subentry.label :status_id, status.title, { :value => status.id } %>
-                <%= subentry.radio_button :status_id, status.id %>
-            <% end %>
+            <fieldset class="form-group">
+                <h2><%= cat.name.titleize %></h2>
+                    <% @statuses.each do | status | %>
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <%= subentry.radio_button :status_id, status.id, { :class => "form-check-input" } %>
+                                <%= status.title %>
+                            </label>
+                        </div>
+                    <% end %>
+            </fieldset>
         <% end %>
-        </div>
     <% end %>
 
     <%= f.submit %>
