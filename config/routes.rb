@@ -59,4 +59,5 @@ Rails.application.routes.draw do
 
   resources :entries, { :only => [ :index, :new, :create ] }
   resources :cats, { :only => [ :index, :new, :create ] }
+  resources :users, { :only => [ :show ] }
 end

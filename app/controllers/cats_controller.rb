@@ -14,7 +14,7 @@ class CatsController < ApplicationController
         @cat.user_id = @user.id
 
         if @cat.save
-            redirect_to cats_path
+            redirect_to user_path( @user )
         else
             render :new
         end
