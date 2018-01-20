@@ -12,6 +12,15 @@
  *
  */
 
+$nav-link-padding-y: 1rem;
+$nav-link-padding-x: 1rem;
+
+// Badges
+$badge-font-size:                   87.5%;
+$badge-font-weight:                 normal;
+$badge-padding-y:                   .4em;
+$badge-padding-x:                   .4em;
+
 @import 'bootstrap';
 
 $bg: #fafafa;
@@ -24,10 +33,19 @@ body {
 
 .nav {
     background: $white;
+    margin-bottom: 30px;
 }
 
 main {
-    padding: 30px 0;
+    margin-bottom: 30px;
+}
+
+.alert-container {
+    margin-bottom: 30px;
+}
+
+.alert-container .alert:last-child {
+    margin-bottom: 0;
 }
 
 .cat-avatar {
@@ -35,4 +53,9 @@ main {
     height: 50px;
     border-radius: 50%;
     background: #fafafa;
+
+    // Positional styles
+    &:not( :last-child ) {
+        margin-right: 1rem;
+    }
 }
