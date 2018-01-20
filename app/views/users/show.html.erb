@@ -1,38 +1,31 @@
-<section>
-    <div class="col-12 col-md-8 offset-md-2">
+<h1>Account</h1>
+<div class="card">
+    <h3 class="card-header">Cats</h3>
 
+    <% if @user.cats.length > 0 %>
+        <ul class="list-group list-group-flush">
+            <% @user.cats.each do | cat | %>
+                <li class="list-group-item">
+                    <img class="cat-avatar" src="<%= cat.image_url %>" alt="<%= cat.name%>">
+                    <span><%= cat.name %></span>
+                </li>
+            <% end %>
+        </ul>
+    <% end %>
 
-    <h1>Account</h1>
-
-
-    <div class="card">
-        <h3 class="card-header">Cats</h3>
-
-        <% if @user.cats.length > 0 %>
-            <ul class="list-group list-group-flush">
-                <% @user.cats.each do | cat | %>
-                    <li class="list-group-item"><%= cat.name %></li>
-                <% end %>
-            </ul>
-        <% end %>
-
-        <% if @user.cats.length == 0 %>
-            <div class="card-block">
-            <% if @is_current_user %>
-                <p>Hey, you haven't added any cats yet! <a href="<%= new_cat_path %>">Click here</a> to get started!</p>
-            <% else %>
-                <p>Whoops, looks like this user hasn't added any cats yet.</p>
-            </div>
-            <% end%>
-        <% end %>
-
+    <% if @user.cats.length == 0 %>
+        <div class="card-block">
         <% if @is_current_user %>
-        <div class="card-footer">
-            <%= link_to 'Add a cat', new_cat_path %>
+            <p>Hey, you haven't added any cats yet! <a href="<%= new_cat_path %>">Click here</a> to get started!</p>
+        <% else %>
+            <p>Whoops, looks like this user hasn't added any cats yet.</p>
         </div>
-        <% end %>
+        <% end%>
+    <% end %>
+
+    <% if @is_current_user %>
+    <div class="card-footer">
+        <%= link_to 'Add a cat', new_cat_path %>
     </div>
-
-
-
-</section>
+    <% end %>
+</div>

@@ -1,12 +1,10 @@
-<section>
-    <h1>Add a Cat</h1>
-    <%= form_for( @cat ) do | f | %>
-        <div class="form-group">
-            <%= f.label :name %>
-            <%= f.text_field :name %>
-        </div>
-        <div class="form-group">
-            <%= f.submit %>
-        </div>
-    <% end %>
-</section>
+<h1>Add a Cat</h1>
+<%= form_for( @cat ) do | f | %>
+    <div class="form-group">
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+    </div>
+    <div class="form-group">
+        <%= f.submit %>
+    </div>
+<% end %>

@@ -12,6 +12,7 @@ class CatsController < ApplicationController
     def create
         @cat = Cat.new( cat_params( params ) )
         @cat.user_id = @user.id
+        @cat.image_url = "https://robohash.org/#{Time.now.to_i}.png?set=set4&size=150x150"
 
         if @cat.save
             redirect_to user_path( @user )

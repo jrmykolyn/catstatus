@@ -21,24 +21,32 @@
 </nav>
 
 <% if flash.notice || flash.alert %>
-<section class="container">
-    <% if flash.notice %>
-    <div class="alert alert-success">
-        <span><%= flash.notice %></span>
-    </div>
-    <% end %>
+    <section class="container">
+        <div class="row">
+            <div class="col-12 col-md-8 offset-md-2">
+                <% if flash.notice %>
+                <div class="alert alert-success">
+                    <span><%= flash.notice %></span>
+                </div>
+                <% end %>
 
-    <% if flash.alert %>
-    <div class="alert alert-danger">
-        <span><%= flash.alert %></span>
-    </div>
-    <% end %>
-</section>
+                <% if flash.alert %>
+                <div class="alert alert-danger">
+                    <span><%= flash.alert %></span>
+                </div>
+                <% end %>
+            </div>
+        </div>
+    </section>
 <% end %>
 
 <main>
     <div class="container">
-        <%= yield %>
+        <div class="row">
+            <div class="col-12 col-md-8 offset-md-2">        
+                <%= yield %>
+            </div>
+        </div>
     </div>
 </main>
 

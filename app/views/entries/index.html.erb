@@ -1,44 +1,45 @@
-<section class="row">
-    <div class="col-12 col-md-8 offset-md-2">
-        <h1>Entries</h1>
-        <% if current_user %>
-            <div>
-                <% if current_user.can_create_entry? %>
-                    <%= link_to 'Add Entry', new_entry_path %>
-                    <% else %>
-                    <span>Looks like you've already created an entry for today. Don't forget to create a new one tomorrow!</span>
-                <% end%>
+<h1>Entries</h1>
+<% if current_user %>
+
+        <% if current_user.can_create_entry? %>
+        <div class="alert alert-success">
+            <%= link_to 'Add Entry', new_entry_path %>
+        </div>
+            <% else %>
+        <div class="alert alert-warning">
+            <span>Looks like you've already created an entry for today. Don't forget to create a new one tomorrow!</span>
+        </div>
+        <% end%>
+
+<% end %>
+
+<% if Entry.all.length > 0 %>
+    <% User.all.each do | user | %>
+        <% user.entries.order( :created_at => :desc ).each do | entry | %>
+            <div class="card">
+                <h4 class="card-header"><%= entry.created_at.strftime("%b %d, %Y") %></h4>
+                <ul class="list-group list-group-flush">
+                <% entry.subentries.each do | subentry | %>
+                        <li class="list-group-item">
+
+                            <img class="cat-avatar" src="<%= subentry.cat.image_url %>" alt="<%= subentry.cat.name %>">
+                            <span><%= subentry.cat.name %></span>
+
+                            <% @statuses.each do | status | %>
+                                <% if status.name == subentry.status.name %>
+                                    <span class="badge badge-success"><%= subentry.status.name %></span>
+                                <% else %>
+                                    <span class="badge badge-default"><%= status.name %></span>
+                                <% end %>
+                            <% end %>
+                        </li>
+                <% end %>
+                </ul>
             </div>
         <% end %>
-    </div>
-    <div class="col-12 col-md-8 offset-md-2">
-        <% if Entry.all.length > 0 %>
-            <% User.all.each do | user | %>
-                <h3><%= user.email %></h3>
-                <% user.entries.order( :created_at => :desc ).each do | entry | %>
-                    <div class="card">
-                        <h4 class="card-header"><%= entry.created_at.strftime("%b %d, %Y") %></h4>
-                        <ul class="list-group list-group-flush">
-                        <% entry.subentries.each do | subentry | %>
-                                <li class="list-group-item">
-                                    <span><%= subentry.cat.name %></span>
-                                    <% @statuses.each do | status | %>
-                                        <% if status.name == subentry.status.name %>
-                                            <span class="badge badge-success"><%= subentry.status.name %></span>
-                                        <% else %>
-                                            <span class="badge badge-default"><%= status.name %></span>
-                                        <% end %>
-                                    <% end %>
-                                </li>
-                        <% end %>
-                        </ul>
-                    </div>
-                <% end %>
-            <% end %>
-        <% elsif current_user %>
-            <p>Whoops, looks like none of our users have created any entries. Why don't you <a href="<%= new_entry_path%>">Create One</a>?</p>
-        <% else %>
-            <p>Whoops, looks like none of our users have created any entries. <a href="<%= new_user_registration_path%>">Sign up</a> or <a href="<%= new_user_session_path%>">Log In</a> and help out.</p>
-        <% end %>
-    </div>
-</section>
+    <% end %>
+<% elsif current_user %>
+    <p>Whoops, looks like none of our users have created any entries. Why don't you <a href="<%= new_entry_path%>">Create One</a>?</p>
+<% else %>
+    <p>Whoops, looks like none of our users have created any entries. <a href="<%= new_user_registration_path%>">Sign up</a> or <a href="<%= new_user_session_path%>">Log In</a> and help out.</p>
+<% end %>
