@@ -20,14 +20,14 @@ cats.each do | c |
     cat = Cat.create( { :name => c, user_id: user.id } )
 end
 
-5.times do | n |
-    entry = Entry.create( { :user_id => user.id } )
-
-    Cat.all.each do | cat |
-        subentry = Subentry.create( {
-            :cat_id => cat.id,
-            :entry_id => entry.id,
-            :status_id => Status.all.sample.id
-        } )
-    end
-end
+# 5.times do | n |
+#     entry = Entry.create( { :user_id => user.id } )
+#
+#     Cat.all.each do | cat |
+#         subentry = Subentry.create( {
+#             :cat_id => cat.id,
+#             :entry_id => entry.id,
+#             :status_id => Status.all.sample.id
+#         } )
+#     end
+# end
