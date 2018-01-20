@@ -15,6 +15,7 @@ class EntriesController < ApplicationController
 
     def create
         @entry = Entry.new( entry_params( params ) )
+        @entry.user_id = User.first.id # /// TEMP
 
         if @entry.save
             redirect_to entries_path
@@ -25,6 +26,6 @@ class EntriesController < ApplicationController
 
     private
     def entry_params( params )
-        return params.require( :entry ).permit( :status_id )
+        return params.require( :entry ).permit( subentries_attributes: [ :status_id, :cat_id ] )
     end
 end

@@ -1,9 +1,13 @@
 <section>
+    <!--
     <% if @can_create_entry %>
     <h1>Can create entry</h1>
     <% else %>
     <h1>Cannot create entry</h1>
     <% end%>
+    -->
+
+    <%= link_to 'Add Entry', new_entry_path %>
 
     <% @user.entries.each do | entry | %>
         <h2><%= entry.created_at %></h2>
